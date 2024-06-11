@@ -6,6 +6,8 @@
 
     display: flex;
     flex-direction: column;
+
+    
     .top {
         padding: 20px;
         display: flex;
@@ -24,6 +26,12 @@
                 height: 60px;
                 border-radius: 50%;
                 object-fit: cover;
+                
+                &.back-btn {
+                    transform: rotate(270deg);
+                    height: 25px;
+                    width: 25px;
+                }
             }
 
             .texts {
@@ -173,4 +181,14 @@
             }
         }
     }
+}
+
+
+
+
+@media (max-width: 768px) {
+    .chat {
+        flex: 1
+    }
+
 }

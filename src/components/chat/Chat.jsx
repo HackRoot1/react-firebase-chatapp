@@ -22,7 +22,7 @@ const Chat = () => {
 
     console.log(chat?.messages[0].text);
     const { currentUser } = useUserStore();
-    const { chatId, user, isCurrentUserBlocked, isReceiverBlocked } =
+    const { chatId, user, isCurrentUserBlocked, isReceiverBlocked, isStyle1, isStyle2, changeStyle, changeStyle2 } =
         useChatStore();
 
     const endRef = useRef(null);
@@ -54,6 +54,11 @@ const Chat = () => {
             });
         }
     };
+
+    const handleChatView = () => {
+        changeStyle(isStyle1)
+        changeStyle2(isStyle2)
+    }
 
     const handleSend = async () => {
         if (text === "") return;
@@ -113,6 +118,7 @@ const Chat = () => {
         <div className="chat">
             <div className="top">
                 <div className="user">
+                    <img src="./arrowUp.png" alt="" className="back-btn" onClick={handleChatView} />
                     <img src={user?.avatar || "./avatar.png"} alt="" />
                     <div className="texts">
                         <span>{user?.username}</span>

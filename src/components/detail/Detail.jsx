@@ -13,6 +13,10 @@ const Detail = () => {
         isReceiverBlocked,
         changeBlock,
         resetChat,
+        isStyle1,
+        isStyle3,
+        changeStyle,
+        changeStyle3,
     } = useChatStore();
 
     const { currentUser } = useUserStore();
@@ -35,14 +39,24 @@ const Detail = () => {
         }
     };
 
+    const handleSetting = () => {
+        changeStyle(isStyle1)
+        changeStyle3(isStyle3)
+    }
+    
+
     const handleLogout = () => {
         auth.signOut();
         resetChat();
     };
 
 
+
     return (
         <div className="detail">
+            <div className="back-btn">
+                <img src="./arrowUp.png" alt="" onClick={handleSetting} />
+            </div>
             <div className="user">
                 <img src={user?.avatar || "./avatar.png"} alt="" />
                 <h2>{user?.userename}</h2>

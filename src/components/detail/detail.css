@@ -1,6 +1,18 @@
 .detail {
     flex: 1;
 
+
+    .back-btn {
+        display: flex;
+        padding: 20px;
+
+        img {
+            width: 20px;
+            height: 20px;
+            transform: rotate(270deg);
+        }
+    }
+
     .user {
         padding: 25px 20px;
         display: flex;

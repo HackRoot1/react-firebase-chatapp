@@ -12,7 +12,7 @@ const ChatList = () => {
     const [input, setInput] = useState("");
 
     const { currentUser } = useUserStore();
-    const { chatId, changeChat } = useChatStore();
+    const { chatId, changeChat, isStyle1, changeStyle, changeStyle2, isStyle2 } = useChatStore();
 
     useEffect(() => {
         const unSub = onSnapshot(
@@ -58,10 +58,11 @@ const ChatList = () => {
                 chats: userChats,
             });
             changeChat(chat.chatId, chat.user);
+            changeStyle(isStyle1);
+            changeStyle2(isStyle2);
         } catch (error) {
             console.log(error);
         }
-
     };
 
     const filteredChats = chats.filter((c) =>
