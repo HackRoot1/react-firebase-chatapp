@@ -13,9 +13,9 @@ const Detail = () => {
         isReceiverBlocked,
         changeBlock,
         resetChat,
-        isStyle1,
+        isStyle2,
         isStyle3,
-        changeStyle,
+        changeStyle2,
         changeStyle3,
     } = useChatStore();
 
@@ -40,7 +40,7 @@ const Detail = () => {
     };
 
     const handleSetting = () => {
-        changeStyle(isStyle1)
+        changeStyle2(isStyle2)
         changeStyle3(isStyle3)
     }
     

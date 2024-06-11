@@ -22,7 +22,7 @@ const Chat = () => {
 
     console.log(chat?.messages[0].text);
     const { currentUser } = useUserStore();
-    const { chatId, user, isCurrentUserBlocked, isReceiverBlocked, isStyle1, isStyle2, changeStyle, changeStyle2 } =
+    const { chatId, user, isCurrentUserBlocked, isReceiverBlocked, isStyle1, isStyle2, isStyle3, changeStyle, changeStyle2, changeStyle3 } =
         useChatStore();
 
     const endRef = useRef(null);
@@ -58,6 +58,11 @@ const Chat = () => {
     const handleChatView = () => {
         changeStyle(isStyle1)
         changeStyle2(isStyle2)
+    }
+
+    const handleSetting = () => {
+        changeStyle2(isStyle2)
+        changeStyle3(isStyle3)
     }
 
     const handleSend = async () => {
@@ -129,7 +134,7 @@ const Chat = () => {
                 <div className="icons">
                     <img src="./phone.png" alt="" />
                     <img src="./video.png" alt="" />
-                    <img src="./info.png" alt="" />
+                    <img src="./info.png" alt="" onClick={handleSetting} />
                 </div>
             </div>
 
