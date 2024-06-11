@@ -63,11 +63,52 @@
                 }
             }
         }
+
+        button {
+            width: 70%;
+                padding: 10px;
+                border: none;
+                background-color: #8badcc;
+                color: white;
+                border-radius: 5px;
+                cursor: pointer;
+                font-weight: 500;
+
+                &:disabled {
+                    cursor: not-allowed;
+                    background-color: #1f8ff19c;
+                }
+        }
     }
 
     .separator {
         height: 80%;
         width: 2px;
         background-color: #dddddd35;
+    }
+}
+
+
+
+
+@media (max-width: 768px) {
+    .login {
+        flex-direction: column;
+        gap: 50px;
+        
+        .item {
+            justify-content: center;
+        }
+        .separator {
+            display: none;
+        }
+
+    }
+
+}
+
+@media (max-width: 480px) {
+    .login .item form input, .login .item form button {
+        padding: 10px;
     }
 }

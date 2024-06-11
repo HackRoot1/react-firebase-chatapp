@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./login.css";
 import { toast } from "react-toastify";
 import {
@@ -6,12 +6,32 @@ import {
     signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth, db } from "../../lib/firebase";
-import { collection, doc, getDocs, query, setDoc, where } from "firebase/firestore";
+import {
+    collection,
+    doc,
+    getDocs,
+    query,
+    setDoc,
+    where,
+} from "firebase/firestore";
 import upload from "../../lib/upload";
 
 const Login = () => {
     const [avatar, setAvatar] = useState({ file: null, url: "" });
     const [loading, setLoading] = useState(false);
+    const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
+    const [showRegistration, setShowRegistration] = useState(false);
+    const [showLogin, setShowLogin] = useState(true);
+
+    const updateMedia = () => {
+        setIsDesktop(window.innerWidth >= 768);
+    };
+
+    useEffect(() => {
+        window.addEventListener("resize", updateMedia);
+        return () => window.removeEventListener("resize", updateMedia);
+    }, []);
+
     const handleAvatar = (e) => {
         if (e.target.files[0]) {
             setAvatar({
@@ -88,48 +108,84 @@ const Login = () => {
         }
     };
 
+    const handleLoginViews = () => {
+        setShowLogin(false)
+        setShowRegistration(true)
+    }
+   
+    const handleRegisterViews = () => {
+        setShowLogin(true)
+        setShowRegistration(false)
+    }
+
     return (
         <div className="login">
-            <div className="item">
-                <h2>Welcome back,</h2>
-                <form onSubmit={handleLogin}>
-                    <input type="text" placeholder="Email" name="email" />
-                    <input
-                        type="password"
-                        placeholder="Password"
-                        name="password"
-                    />
-                    <button disabled={loading}>
-                        {loading ? "Loading" : "Sign In"}
-                    </button>
-                </form>
-            </div>
-            <div className="separator"></div>
-            <div className="item">
-                <h2>Create an Account</h2>
-                <form onSubmit={handleRegister}>
-                    <label htmlFor="file">
-                        <img src={avatar.url || "./avatar.png"} alt="" />
-                        Upload an Image
-                    </label>
-                    <input
-                        type="file"
-                        id="file"
-                        style={{ display: "none" }}
-                        onChange={handleAvatar}
-                    />
-                    <input type="text" placeholder="Username" name="username" />
-                    <input type="text" placeholder="Email" name="email" />
-                    <input
-                        type="password"
-                        placeholder="Password"
-                        name="password"
-                    />
-                    <button disabled={loading}>
-                        {loading ? "Loading" : "Sign Up"}
-                    </button>
-                </form>
-            </div>
+            {(isDesktop || showLogin) && (
+                <>
+                    <div className="item login-section">
+                        <h2>Welcome back</h2>
+                        <form onSubmit={handleLogin}>
+                            <input
+                                type="text"
+                                placeholder="Email"
+                                name="email"
+                            />
+                            <input
+                                type="password"
+                                placeholder="Password"
+                                name="password"
+                            />
+                            <button disabled={loading}>
+                                {loading ? "Loading" : "Sign In"}
+                            </button>
+                        </form>
+                        {!isDesktop && (
+                            <button onClick={ handleLoginViews }>
+                                Create Account
+                            </button>
+                        )}
+                    </div>
+                </>
+            )}
+
+            {isDesktop && <div className="separator"></div>}
+
+            {(isDesktop || showRegistration) && (
+                <div className="item registration-section">
+                    <h2>Create an Account</h2>
+                    <form onSubmit={handleRegister}>
+                        <label htmlFor="file">
+                            <img src={avatar.url || "./avatar.png"} alt="" />
+                            Upload an Image
+                        </label>
+                        <input
+                            type="file"
+                            id="file"
+                            style={{ display: "none" }}
+                            onChange={handleAvatar}
+                        />
+                        <input
+                            type="text"
+                            placeholder="Username"
+                            name="username"
+                        />
+                        <input type="text" placeholder="Email" name="email" />
+                        <input
+                            type="password"
+                            placeholder="Password"
+                            name="password"
+                        />
+                        <button disabled={loading}>
+                            {loading ? "Loading" : "Sign Up"}
+                        </button>
+                    </form>
+                    {!isDesktop && (
+                        <button onClick={handleRegisterViews}>
+                            Back to Login
+                        </button>
+                    )}
+                </div>
+            )}
         </div>
     );
 };
