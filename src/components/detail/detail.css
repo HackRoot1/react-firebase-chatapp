@@ -125,3 +125,45 @@
 
     }
 }
+
+
+@media (max-width: 480px) { 
+
+    .detail {
+
+        .back-btn {
+            display: flex;
+            padding: 10px;
+
+            img {
+                width: 15px;
+                height: 15px;
+            }
+        }
+
+        .user {
+            padding: 20px 15px;
+            gap: 10px;
+
+            img {
+                width: 70px;
+                height: 70px;
+            }
+        }
+
+
+        .info {
+            .btns {
+                button {
+                    padding: 10px;
+    
+                    &.logout {
+                        padding: 10px;
+                    }
+                }
+            }
+        }
+    }
+
+
+}
