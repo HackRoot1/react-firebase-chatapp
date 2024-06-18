@@ -138,6 +138,8 @@
 
 .chat .bottom input {
     flex: 1;
+    max-width: 100%;
+    width: 70%;
     background-color: rgba(17, 25, 47, 0.5);
     border: none;
     outline: none;
@@ -195,6 +197,8 @@
     }
     
     .chat .top {
+        width: 100dvw;
+        height: 10vh;
         padding: 10px;
     }
 
@@ -232,11 +236,11 @@
 
 
     .chat .center {
-        width: 100vw;
+        width: 100dvw;
         padding: 10px;
     }
     .chat .center .message {
-        max-width: 90%;
+        max-width: 80%;
     }
 
     
@@ -249,8 +253,8 @@
     }
 
     .chat .center .message img {
-        width: 20px;
-        height: 20px;
+        width: 20dvw;
+        height: 20dvh;
         border-radius: 50%;
         object-fit: cover;
     }
@@ -272,17 +276,18 @@
         padding: 10px;
         background-color: rgba(17, 25, 40, 0.3);
         border-radius: 10px;
-        font-size: 10px;
+        font-size: 16px;
     }
 
     .chat .center .message .texts span {
-        font-size: 7px;
+        font-size: 10px;
     }
     
     
     
     .chat .bottom {
-        width: 100vw;
+        width: 100dvw;
+        height: 10vh;
         padding: 10px;
         gap: 10px;
     }
@@ -294,17 +299,18 @@
     }
 
     .chat .bottom img {
-        width: 10px;
-        height: 10px;
+        width: 14px;
+        height: 14px;
     }
 
     .chat .bottom input {
         padding: 5px;
-        font-size: 10px;
+        font-size: 14px;
         border-radius: 5px;
+        
     }
     .chat .bottom .sendButton {
         padding: 5px 10px;
-        font-size: 10px;
+        font-size: 14px;
     }
 }
