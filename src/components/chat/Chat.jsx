@@ -20,7 +20,7 @@ const Chat = () => {
     const [text, setText] = useState("");
     const [img, setImg] = useState({ file: null, url: "" });
 
-    console.log(chat?.messages[0].text);
+    // console.log(chat?.messages[0].text);
     const { currentUser } = useUserStore();
     const { chatId, user, isCurrentUserBlocked, isReceiverBlocked, isStyle1, isStyle2, isStyle3, changeStyle, changeStyle2, changeStyle3 } =
         useChatStore();
@@ -139,7 +139,7 @@ const Chat = () => {
             </div>
 
             <div className="center">
-                {chat?.messages.map((message) => (
+                {chat?.messages?.map((message) => (
                     <div
                         className={
                             message?.senderId === currentUser?.id
