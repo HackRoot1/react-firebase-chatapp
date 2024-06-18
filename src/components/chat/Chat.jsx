@@ -146,7 +146,7 @@ const Chat = () => {
                                 ? "message own"
                                 : "message"
                         }
-                        key={format(message.createdAt.toDate())}
+                        key={(message.createdAt.toDate()).getTime()}
                     >
                         <div className="texts">
                             {message?.img && <img src={message.img} alt="" />}
